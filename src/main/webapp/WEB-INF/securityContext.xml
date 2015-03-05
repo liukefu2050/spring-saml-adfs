@@ -101,6 +101,9 @@
         <property name="defaultProfileOptions">
             <bean class="org.springframework.security.saml.websso.WebSSOProfileOptions">
                 <property name="includeScoping" value="false"/>
+                <!--  
+                <property name="binding" value="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/>
+                -->
             </bean>
         </property>
     </bean>
@@ -115,19 +118,37 @@
 	<constructor-arg>
 		<bean class="org.springframework.security.saml.metadata.MetadataGenerator">
 			<property name="entityId" value="urn:sso-test:hrboss:com"/>
-			<property name="requestSigned" value="false"/>
+			<property name="requestSigned" value="true"/>
+			  
+			<property name="extendedMetadata">
+				<bean class="org.springframework.security.saml.metadata.ExtendedMetadata">
+					<property name="local" value="false" />
+					<property name="requireArtifactResolveSigned" value="false" />
+					<property name="requireLogoutRequestSigned" value="true" />
+					<property name="requireLogoutResponseSigned" value="true" />
+					
+					<property name="signMetadata" value="true" />
+					<property name="signingKey" value="tomcat7" />
+					<property name="idpDiscoveryEnabled" value="false" />
+					<!--
+					<property name="alias" value="tomcat7" />
+					<property name="signingAlgorithm" value="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+					<property name="encryptionKey" value="Hrb0ss2015" />
+					<property name="idpDiscoveryEnabled" value="false" />
+					-->
+				</bean>
+			</property>
+			
 		</bean>
 	</constructor-arg>
 </bean>
-
     <!-- The filter is waiting for connections on URL suffixed with filterSuffix and presents SP metadata there -->
     <bean id="metadataDisplayFilter" class="org.springframework.security.saml.metadata.MetadataDisplayFilter"/>
 
     <!-- IDP Metadata configuration - paths to metadata of IDPs in circle of trust is here -->
- <bean id="metadata" class="org.springframework.security.saml.metadata.CachingMetadataManager">
+<bean id="metadata" class="org.springframework.security.saml.metadata.CachingMetadataManager">
 	<constructor-arg>
 		<list>
-			
 			<bean class="org.opensaml.saml2.metadata.provider.ResourceBackedMetadataProvider">
 				<constructor-arg>
 					<bean class="java.util.Timer"/>
@@ -138,8 +159,8 @@
 					</bean>
 				</constructor-arg>
 				<property name="parserPool" ref="parserPool"/>
-			</bean>	
-			<!--  	
+			</bean>
+			<!--	
 			<bean class="org.opensaml.saml2.metadata.provider.HTTPMetadataProvider">
 				<constructor-arg>
 					<value type="java.lang.String">https://dc01.hrboss.local/FederationMetadata/2007-06/FederationMetadata.xml</value>
@@ -153,30 +174,13 @@
 		</list>
 	</constructor-arg>
 </bean>
+
 <bean class="org.springframework.security.saml.trust.httpclient.TLSProtocolConfigurer">
 	<property name="keyManager" ref="keyManager" />
 	<property name="sslHostnameVerification" value="allowAll" />
 </bean>
 
-<!--  
-<bean class="org.springframework.security.saml.metadata.ExtendedMetadataDelegate">
-	<constructor-arg>
-			<bean class="org.opensaml.saml2.metadata.provider.HTTPMetadataProvider">
-				<constructor-arg>
-					<value type="java.lang.String">https://dc01.hrboss.local/FederationMetadata/2007-06/FederationMetadata.xml</value>
-				</constructor-arg>
-				<constructor-arg>
-					<value type="int">5000</value>
-				</constructor-arg>
-				<property name="parserPool" ref="parserPool"/>
-			</bean>
-	</constructor-arg>
-	<constructor-arg>
-		<bean class="org.springframework.security.saml.metadata.ExtendedMetadata"/>
-	</constructor-arg>
-	<property name="metadataTrustCheck" value="false"/>
-</bean>
--->
+
     <!-- SAML Authentication Provider responsible for validating of received SAML messages -->
     <bean id="samlAuthenticationProvider" class="org.springframework.security.saml.SAMLAuthenticationProvider">
         <!-- OPTIONAL property: can be used to store/load user data after login -->
@@ -205,7 +209,7 @@
     <!-- Logout handler terminating local session -->
     <bean id="logoutHandler"
           class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler">
-        <property name="invalidateHttpSession" value="false"/>
+        <property name="invalidateHttpSession" value="true"/>
     </bean>
 
     <!-- Override default logout processing filter with the one processing SAML messages -->
