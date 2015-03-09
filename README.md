@@ -56,3 +56,14 @@ Reference
 * Add NameID as "Claim rule name", choose "Active Directory" as Attribute store, choose "SAM-Account-Name" as LDAP Attribute and "Name ID" as "Outgoing claim type", finish the wizard and confirm the claim rules window
 * Open the provider by double-clicking it, select tab Advanced and change "Secure hash algorithm" to SHA-1
 
+Troubleshooting
+---------------
+
+1. While running the SP application, if you face this issue "org.apache.xml.security.encryption.XMLEncryptionException: Illegal key size", this is due to you JRE policy doesn't support unlimited strength jurisdiction policy file. To fix this, refer to [this link](http://suhothayan.blogspot.com/2012/05/how-to-install-java-cryptography.html), or follow these steps:
+  i. Go to the Oracle Java SE download page http://www.oracle.com/technetwork/java/javase/downloads/index.html
+  ii. Scroll down ... Under "Additional Resources" section you will find "Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy File"
+  iii. Download the version that matches your installed JVM E.g. UnlimitedJCEPolicyJDK7.zip
+  iv. Unzip the downloaded zip
+  v. Copy local_policy.jar and US_export_policy.jar to the $JAVA_HOME/jre/lib/security (Note: these jars will be already there so you have to overwrite them)
+  vi. Then restart your application to get rid of this exception.
+
