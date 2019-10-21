@@ -155,7 +155,10 @@
 				</constructor-arg>
 				<constructor-arg>
 					<bean class="org.opensaml.util.resource.ClasspathResource">
-						<constructor-arg value="/metadata/ADFSv2.0-FederationMetadata.xml"/>
+<!--
+                        <constructor-arg value="/metadata/ADFSv2.0-FederationMetadata.xml"/>
+-->
+						<constructor-arg value="/metadata/365me-federationmetadata.xml"/>
 					</bean>
 				</constructor-arg>
 				<property name="parserPool" ref="parserPool"/>
