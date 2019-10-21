@@ -87,13 +87,13 @@
     <!-- Central storage of cryptographic keys -->
     <bean id="keyManager" class="org.springframework.security.saml.key.JKSKeyManager">
         <constructor-arg value="classpath:tomcat/tomcat-ssl.keystore"/>
-        <constructor-arg type="java.lang.String" value="Hrb0ss2015"/>
+        <constructor-arg type="java.lang.String" value="123456"/>
         <constructor-arg>
             <map>
-                <entry key="tomcat7" value="Hrb0ss2015"/>
+                <entry key="tomcat8" value="123456"/>
             </map>
         </constructor-arg>
-        <constructor-arg type="java.lang.String" value="tomcat7"/>
+        <constructor-arg type="java.lang.String" value="tomcat8"/>
     </bean>
 
     <!-- Entry point to initialize authentication, default values taken from properties file -->
@@ -128,7 +128,7 @@
 					<property name="requireLogoutResponseSigned" value="true" />
 					
 					<property name="signMetadata" value="true" />
-					<property name="signingKey" value="tomcat7" />
+					<property name="signingKey" value="tomcat8" />
 					<property name="idpDiscoveryEnabled" value="false" />
 					<!--
 					<property name="alias" value="tomcat7" />
@@ -149,20 +149,20 @@
 <bean id="metadata" class="org.springframework.security.saml.metadata.CachingMetadataManager">
 	<constructor-arg>
 		<list>
-			<bean class="org.opensaml.saml2.metadata.provider.ResourceBackedMetadataProvider">
+			<!--<bean class="org.opensaml.saml2.metadata.provider.ResourceBackedMetadataProvider">
 				<constructor-arg>
 					<bean class="java.util.Timer"/>
 				</constructor-arg>
 				<constructor-arg>
 					<bean class="org.opensaml.util.resource.ClasspathResource">
-<!--
+&lt;!&ndash;
                         <constructor-arg value="/metadata/ADFSv2.0-FederationMetadata.xml"/>
--->
+&ndash;&gt;
 						<constructor-arg value="/metadata/365me-federationmetadata.xml"/>
 					</bean>
 				</constructor-arg>
 				<property name="parserPool" ref="parserPool"/>
-			</bean>
+			</bean>-->
 			<!--	
 			<bean class="org.opensaml.saml2.metadata.provider.HTTPMetadataProvider">
 				<constructor-arg>
@@ -174,9 +174,30 @@
 				<property name="parserPool" ref="parserPool"/>
 			</bean>
 			-->
+            <bean class="org.springframework.security.saml.metadata.ExtendedMetadataDelegate">
+                <constructor-arg>
+                    <bean class="org.opensaml.saml2.metadata.provider.ResourceBackedMetadataProvider">
+                        <constructor-arg>
+                            <bean class="java.util.Timer"/>
+                        </constructor-arg>
+                        <constructor-arg>
+                            <bean class="org.opensaml.util.resource.ClasspathResource">
+                                <constructor-arg value="/metadata/365me-federationmetadata.xml"/>
+                            </bean>
+                        </constructor-arg>
+                        <property name="parserPool" ref="parserPool"/>
+                    </bean>
+                </constructor-arg>
+                <constructor-arg>
+                    <bean class="org.springframework.security.saml.metadata.ExtendedMetadata"/>
+                </constructor-arg>
+                <property name="metadataTrustCheck" value="false"/>
+            </bean>
 		</list>
 	</constructor-arg>
 </bean>
+
+
 
 <bean class="org.springframework.security.saml.trust.httpclient.TLSProtocolConfigurer">
 	<property name="keyManager" ref="keyManager" />

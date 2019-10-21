@@ -103,7 +103,7 @@
 					<port>8080</port>
 					<httpsPort>8443</httpsPort>
 					<keystoreFile>${project.basedir}/src/main/resources/tomcat/tomcat-ssl.keystore</keystoreFile>
-					<keystorePass>Hrb0ss2015</keystorePass>
+					<keystorePass>123456</keystorePass>
 				</configuration>
 			</plugin>
 		</plugins>
