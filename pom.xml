@@ -94,7 +94,7 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
@@ -105,7 +105,7 @@
 					<keystoreFile>${project.basedir}/src/main/resources/tomcat/tomcat-ssl.keystore</keystoreFile>
 					<keystorePass>123456</keystorePass>
 				</configuration>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 	<dependencies>
