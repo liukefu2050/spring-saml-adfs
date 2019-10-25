@@ -11,12 +11,11 @@ public class TestUserDetails implements SAMLUserDetailsService {
     @Override
     public Object loadUserBySAML(SAMLCredential cred) throws UsernameNotFoundException {
         System.out.println("==========================================");
-
+        System.out.println("SAMLCredential attributes:");
         List<Attribute> list = cred.getAttributes();
         for (Attribute attribute:list){
             System.out.println(attribute.getName()+"="+cred.getAttributeAsString(attribute.getName()));
         }
-        System.out.println();
         System.out.println("==========================================");
         return cred.getAttributeAsString("accountID");
     }
