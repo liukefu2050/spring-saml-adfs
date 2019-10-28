@@ -16,7 +16,7 @@
                             <p>
                                 <strong>Default local service provider:</strong><br>
                                 <c:forEach var="entity" items="${hostedSP}">
-                                    <a href="<c:url value="/saml/web/metadata/display"><c:param name="entityId" value="${hostedSP}"/></c:url>">
+                                    <a href="<c:url value="/saml/metadata/display"><c:param name="entityId" value="${hostedSP}"/></c:url>">
                                     <c:out value="${hostedSP}"/></a>
                                 </c:forEach>
                                 <c:if test="${empty hostedSP}"> - </c:if>
@@ -26,7 +26,7 @@
                             <p>
                                 <strong>Service providers:</strong><br/>
                                 <c:forEach var="entity" items="${spList}">
-                                    <a href="<c:url value="/saml/web/metadata/display"><c:param name="entityId" value="${entity}"/></c:url>">
+                                    <a href="<c:url value="/saml/metadata/display"><c:param name="entityId" value="${entity}"/></c:url>">
                                         <c:out value="${entity}"/></a><br/>
                                 </c:forEach>
                                 <c:if test="${empty spList}"> - </c:if>
@@ -34,7 +34,7 @@
                             <p>
                                 <strong>Identity providers:</strong><br/>
                                 <c:forEach var="entity" items="${idpList}">
-                                    <a href="<c:url value="/saml/web/metadata/display"><c:param name="entityId" value="${entity}"/></c:url>">
+                                    <a href="<c:url value="/saml/metadata/display"><c:param name="entityId" value="${entity}"/></c:url>">
                                         <c:out value="${entity}"/></a><br/>
                                 </c:forEach>
                                 <c:if test="${empty idpList}"> - </c:if>
@@ -42,16 +42,16 @@
                             <p>
                                 <strong>Metadata providers:</strong><br/>
                                 <c:forEach var="entity" items="${metadata}" varStatus="status">
-                                    <a href="<c:url value="/saml/web/metadata/provider"><c:param name="providerIndex" value="${status.index}"/></c:url>">
+                                    <a href="<c:url value="/saml/metadata/provider"><c:param name="providerIndex" value="${status.index}"/></c:url>">
                                         <c:out value="${entity}"/></a><br/>
                                 </c:forEach>
                                 <c:if test="${empty metadata}"> - </c:if>
                             </p>
                             <div>
-                            <form class="left" action="<c:url value="/saml/web/metadata/generate"/>" method="get">
+                            <form class="left" action="<c:url value="/saml/metadata/generate"/>" method="get">
                                 <input type="submit" value="Generate new service provider metadata" class="button"/>
                             </form>
-                            <form class="left" action="<c:url value="/saml/web/metadata/refresh"/>">
+                            <form class="left" action="<c:url value="/saml/metadata/refresh"/>">
                                 <input type="submit" value="Refresh metadata" class="button"/>
                             </form>
                             </div>

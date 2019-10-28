@@ -44,7 +44,7 @@ import static org.springframework.util.StringUtils.hasLength;
  * Class allows manipulation of metadata from web UI.
  */
 @Controller
-@RequestMapping("/metadata")
+@RequestMapping("/saml/metadata")
 public class MetadataController {
 
     private final Logger log = LoggerFactory.getLogger(MetadataController.class);

@@ -14,7 +14,7 @@
                         <div class="post-title"><h2 class="label label-green">Metadata detail</h2></div>
                         <p class="quiet large">Detail of a single entity imported to Spring SAML's MetadataManager.</p>
                         <div class="post-body">
-                            <p><a href="<c:url value="/saml/web/metadata"/>">&lt;&lt Back</a></p>
+                            <p><a href="<c:url value="/saml/metadata"/>">&lt;&lt Back</a></p>
                             <form:form commandName="metadata">
                                 <table>
                                     <tr>
@@ -79,7 +79,7 @@
                             </c:otherwise>
                             </c:choose>
                             <br>
-                            <p><a href="<c:url value="/saml/web/metadata"/>">&lt;&lt Back</a></p>
+                            <p><a href="<c:url value="/saml/metadata"/>">&lt;&lt Back</a></p>
                         </div>
                     </div>
                     <div class="clearer">&nbsp;</div>

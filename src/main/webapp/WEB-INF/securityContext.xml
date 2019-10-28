@@ -19,10 +19,10 @@
     <security:http security="none" pattern="/logout.jsp"/>
 
     <!-- Security for the administration UI -->
-    <security:http pattern="/saml/web/**" access-denied-page="/saml/web/metadata/login">
-        <security:form-login login-processing-url="/saml/web/login" login-page="/saml/web/metadata/login" default-target-url="/saml/web/metadata"/>
-        <security:intercept-url pattern="/saml/web/metadata/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <security:intercept-url pattern="/saml/web/**" access="ROLE_ADMIN"/>
+    <security:http pattern="/saml/**" access-denied-page="/saml/metadata/login">
+        <security:form-login login-processing-url="/saml/j_spring_security_check" login-page="/saml/metadata/login" default-target-url="/saml/metadata"/>
+        <security:intercept-url pattern="/saml/metadata/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/saml/**" access="ROLE_ADMIN"/>
         <security:custom-filter before="FIRST" ref="metadataGeneratorFilter"/>
     </security:http>
 

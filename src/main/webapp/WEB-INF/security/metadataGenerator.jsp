@@ -16,7 +16,7 @@
                         <p class="quiet large">Generates new metadata for service provider. Output can be used to configure your
                             securityContext.xml descriptor.</p>
                         <div class="post-body">
-                            <p><a href="<c:url value="/saml/web/metadata"/>">&lt;&lt Back</a></p>
+                            <p><a href="<c:url value="/saml/metadata"/>">&lt;&lt Back</a></p>
                             <form:form commandName="metadata" action="create">
                             <table>
                             <tr>
@@ -430,7 +430,7 @@
                             </tr>
                             </table>
                             </form:form>
-                            <p><a href="<c:url value="/saml/web/metadata"/>">&lt;&lt Back</a></p>
+                            <p><a href="<c:url value="/saml/metadata"/>">&lt;&lt Back</a></p>
                         </div>
                     </div>
                     <div class="clearer">&nbsp;</div>

@@ -14,7 +14,7 @@
                         <div class="post-title"><h2 class="label label-green">Metadata provider detail</h2></div>
                         <p class="quiet large">Overview of a metadata provider which can include multiple SAML entities.</p>
                         <div class="post-body">
-                            <p><a href="<c:url value="/saml/web/metadata"/>">&lt;&lt Back</a></p>
+                            <p><a href="<c:url value="/saml/metadata"/>">&lt;&lt Back</a></p>
                             <strong>Provider:</strong> <c:out value="${provider}"/>
                             <p>
                             <form:form commandName="provider" action="removeProvider">
@@ -22,7 +22,7 @@
                                 <input type="submit" class="button" value="Remove provider"/>
                             </form:form>
                             <br>
-                            <p><a href="<c:url value="/saml/web/metadata"/>">&lt;&lt Back</a></p>
+                            <p><a href="<c:url value="/saml/metadata"/>">&lt;&lt Back</a></p>
                         </div>
                     </div>
                     <div class="clearer">&nbsp;</div>

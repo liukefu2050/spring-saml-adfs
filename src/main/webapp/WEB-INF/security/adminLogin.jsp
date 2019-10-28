@@ -18,7 +18,7 @@
                                 <div class="error">Incorrect login name or password. Please retry using correct login name and password.</div>
                             <% } %>
                             <p>
-                            <form name='loginForm' action="<c:url value='/saml/web/login' />" method='POST'>
+                            <form name='loginForm' action="<c:url value='/saml/j_spring_security_check' />" method='POST'>
                                 <table>
                                     <tr>
                                         <td><label for="username">User:</label></td>

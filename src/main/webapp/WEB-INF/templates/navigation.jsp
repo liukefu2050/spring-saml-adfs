@@ -15,7 +15,7 @@
     <div class="navigation" id="sub-nav">
         <ul class="tabbed">
             <li<c:if test="${tab != 'metadata'}"> class="current-tab"</c:if>><a href="<c:url value="/saml/login"/>">SAML Login</a></li>
-            <li<c:if test="${tab == 'metadata'}"> class="current-tab"</c:if>><a href="<c:url value="/saml/web/metadata"/>">Metadata Administration</a></li>
+            <li<c:if test="${tab == 'metadata'}"> class="current-tab"</c:if>><a href="<c:url value="/saml/metadata"/>">Metadata Administration</a></li>
         </ul>
         <div class="clearer">&nbsp;</div>
     </div>
